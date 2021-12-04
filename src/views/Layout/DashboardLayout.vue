@@ -5,6 +5,17 @@
       <template slot="links">
         <sidebar-item
           :link="{
+            name: 'Processes',
+            path: '/processes',
+            icon: 'ni ni-bullet-list-67 text-primary',
+          }"
+        >
+        </sidebar-item>
+      </template>
+
+      <template slot="links">
+        <sidebar-item
+          :link="{
             name: 'Dashboard',
             path: '/dashboard',
             icon: 'ni ni-tv-2 text-primary',
@@ -52,6 +63,7 @@
                     icon: 'ni ni-key-25 text-info'
                   }">
         </sidebar-item>
+
         <sidebar-item
                   :link="{
                     name: 'Register',
