@@ -11,6 +11,14 @@
           }"
         >
         </sidebar-item>
+        <sidebar-item
+          :link="{
+            name: 'Process Editor',
+            path: '/processEditor',
+            icon: 'ni ni-palette text-primary',
+          }"
+        >
+        </sidebar-item>
       </template>
 
       <template slot="links">
