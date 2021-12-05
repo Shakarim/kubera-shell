@@ -12,6 +12,14 @@ module.exports = {
       alias: {
         assets: resolveSrc('src/assets')
       }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.bpmn$/,
+          use: 'raw-loader'
+        }
+      ]
     }
   },
   css: {
