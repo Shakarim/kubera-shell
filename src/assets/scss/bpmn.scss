@@ -83,6 +83,13 @@ ul.bpp-properties-tabs-links > li > a {
   height: auto;
 }
 
-.djs-context-pad {
+.djs-context-pad,
+.djs-popup {
   color: #444;
+}
+
+.bpp-checkbox label {
+  padding-left: 7px;
+  vertical-align: middle;
+  margin-bottom: 0;
 }

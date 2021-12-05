@@ -18,8 +18,8 @@
 
   import defaultDiagramXML from '../../../public/bpmn/defaultDiagram.bpmn';
 
-//  import observerPropertiesProviderModule from './provider/observer';
-//  import observerModdleDescriptor from './descriptors/observer';
+  import observerPropertiesProviderModule from './provider/observer';
+  import observerModdleDescriptor from './descriptors/observer';
 
   export default {
     data() {
@@ -38,10 +38,10 @@
           additionalModules: [
             propertiesPanelModule,
             propertiesProviderModule,
-//            observerPropertiesProviderModule
+            observerPropertiesProviderModule
           ],
           moddleExtensions: {
-//            observer: observerModdleDescriptor
+            observer: observerModdleDescriptor
           }
         });
       },
