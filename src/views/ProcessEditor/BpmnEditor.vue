@@ -21,6 +21,9 @@
   import observerPropertiesProviderModule from './provider/observer';
   import observerModdleDescriptor from './descriptors/observer';
 
+  import conditionsPropertiesProviderModule from './provider/conditions';
+  import conditionsModdleDescriptor from './descriptors/conditions';
+
   export default {
     data() {
       return {
@@ -38,10 +41,12 @@
           additionalModules: [
             propertiesPanelModule,
             propertiesProviderModule,
-            observerPropertiesProviderModule
+            observerPropertiesProviderModule,
+            conditionsPropertiesProviderModule
           ],
           moddleExtensions: {
-            observer: observerModdleDescriptor
+            observer: observerModdleDescriptor,
+            conditions: conditionsModdleDescriptor
           }
         });
       },
