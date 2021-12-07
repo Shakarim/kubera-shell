@@ -14,8 +14,20 @@
                 <h6 class="text-muted text-uppercase ls-1 mb-1">Overview</h6>
                 <h5 class="h3 mb-0">Sales value</h5>
               </b-col>
+              <b-col>
+                <b-nav class="nav-pills justify-content-end">
+                  <b-nav-item
+                      class="mr-2 mr-md-0"
+                      :active="true"
+                      link-classes="py-2 px-3"
+                      @click.prevent="saveXml()">
+                    <span class="d-none d-md-block">Save XML</span>
+                    <span class="d-md-none">S</span>
+                  </b-nav-item>
+                </b-nav>
+              </b-col>
             </b-row>
-            <bpmn-editor></bpmn-editor>
+            <bpmn-editor ref="bpmnEditor"></bpmn-editor>
           </card>
         </b-col>
       </b-row>
@@ -36,6 +48,9 @@
       return {}
     },
     methods: {
+      saveXml: function() {
+        this.$refs.bpmnEditor.saveXml();
+      }
     },
     mounted() {
     }
