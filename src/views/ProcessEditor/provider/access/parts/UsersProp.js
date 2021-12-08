@@ -54,8 +54,6 @@ export default function(group, element, translate, bpmnModeler) {
 
         // Update properties for current element
         modeling.updateProperties(element, {extensionElements});
-
-        // return [CmdHelper.addElementsTolist(element, users, 'identity', [user])];
       },
       updateElement: function(element, value, node, idx) {
         // Get extensions node
