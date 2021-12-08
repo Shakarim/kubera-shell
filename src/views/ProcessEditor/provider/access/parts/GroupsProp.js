@@ -1,7 +1,7 @@
 import entryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory';
 import {is, getBusinessObject} from 'bpmn-js/lib/util/ModelUtil';
 
-const propParentName = 'access:Users';
+const propParentName = 'access:Groups';
 
 let elementHelper = require('bpmn-js-properties-panel/lib/helper/ElementHelper'),
   cmdHelper = require('bpmn-js-properties-panel/lib/helper/CmdHelper'),
@@ -27,43 +27,44 @@ export default function(group, element, translate, bpmnModeler, bpmnFactory) {
 
   if (is(element, 'bpmn:UserTask')) {
     group.entries.push(entryFactory.table(translate, {
-      id: 'users',
-      modelProperties: ['access:user'],
-      labels: ['User'],
-      description: 'Enter users which have access',
-      addLabel: 'Add user',
+      id: 'groups',
+      modelProperties: ['access:group'],
+      labels: ['Group'],
+      description: 'Enter groups which have access',
+      addLabel: 'Add group',
       validate: function(element, value, node, idx) {
         return;
       },
       addElement: function(element, node, event, scopeNode) {
         let commands = [];
+
         let extensionElements = businessObject.extensionElements;
         if (!extensionElements) {
           extensionElements = elementHelper.createElement('bpmn:ExtensionElements', { values: [] }, businessObject, bpmnFactory);
           commands.push(cmdHelper.updateBusinessObject(element, businessObject, { extensionElements: extensionElements }));
         }
-        let users = getExtensionElement(businessObject, propParentName);
-        if (!users) {
-          users = elementHelper.createElement('access:Users', {}, extensionElements, bpmnFactory);
-          extensionElements.get('values').push(users);
+        let groups = getExtensionElement(businessObject, propParentName);
+        if (!groups) {
+          groups = elementHelper.createElement('access:Groups', {}, extensionElements, bpmnFactory);
+          extensionElements.get('values').push(groups);
         }
-        let newValue = elementHelper.createElement('access:User', { identity: '' }, users, bpmnFactory);
+        let newValue = elementHelper.createElement('access:Group', { identity: '' }, groups, bpmnFactory);
 
-        commands.push(cmdHelper.addElementsTolist(element, users, 'users', [ newValue ]));
+        commands.push(cmdHelper.addElementsTolist(element, groups, 'groups', [ newValue ]));
         return commands;
       },
       updateElement: function(element, value, node, index) {
-        let item = getExtensionElement(businessObject, propParentName).users[index];
-        return cmdHelper.updateBusinessObject(element, item, {identity: value['access:user']});
+        let item = getExtensionElement(businessObject, propParentName).groups[index];
+        return cmdHelper.updateBusinessObject(element, item, {identity: value['access:group']});
       },
       removeElement: function(element, node, index) {
         let commands = []
-        let users = getExtensionElement(businessObject, propParentName);
+        let groups = getExtensionElement(businessObject, propParentName);
 
-        commands.push(cmdHelper.removeElementsFromList(element, users, 'users', null, [ users.users[index] ]));
+        commands.push(cmdHelper.removeElementsFromList(element, groups, 'groups', null, [ groups.groups[index] ]));
 
-        if (users.get('users').length === 1) {
-          commands.push(extensionElementsHelper.removeEntry(businessObject, element, users));
+        if (groups.get('groups').length === 1) {
+          commands.push(extensionElementsHelper.removeEntry(businessObject, element, groups));
         }
 
         return commands;
@@ -72,10 +73,10 @@ export default function(group, element, translate, bpmnModeler, bpmnFactory) {
         switch(businessObject.$type) {
           case 'bpmn:UserTask':
             // Get extensions node
-            let users = getExtensionElement(businessObject, propParentName);
-            if (users && Array.isArray(users.users)) {
-              node.querySelectorAll('input[name="access:user"]').forEach((e, i) => e.value = users.users[i].identity || '');
-              return users.users;
+            let groups = getExtensionElement(businessObject, propParentName);
+            if (groups && Array.isArray(groups.groups)) {
+              node.querySelectorAll('input[name="access:group"]').forEach((e, i) => e.value = groups.groups[i].identity || '');
+              return groups.groups;
             }
             return [];
             break;
