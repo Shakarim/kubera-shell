@@ -1,6 +1,5 @@
 import entryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory';
 import {is, getBusinessObject} from 'bpmn-js/lib/util/ModelUtil';
-import CmdHelper from '../../../helper/CmdHelper';
 
 const propParentName = 'access:Users';
 
@@ -55,7 +54,19 @@ export default function(group, element, translate, bpmnModeler) {
         // Update properties for current element
         modeling.updateProperties(element, {extensionElements});
       },
-      updateElement: function(element, value, node, idx) {
+      updateElement: function(element, value, node, index) {
+        // Get/create `users` tag inside extensions
+        let users = getExtensionElement(businessObject, propParentName);
+        let input = (users.get('users')[index].identity !== value['access:user'])
+          ? node.querySelectorAll('[data-index="' + index + '"]')[0].getElementsByTagName('input')[0]
+          : undefined;
+        if (users && users.get('users')[index])
+          users.get('users')[index].identity = value['access:user'];
+
+        if (input)
+          setTimeout(function() {input.selectionStart = input.selectionEnd = input.value.length;}, 0);
+      },
+      removeElement: function(element, node, index) {
         // Get extensions node
         let extensionElements = businessObject.extensionElements || moddle.create('bpmn:ExtensionElements');
         // Get values from extension node
@@ -64,7 +75,8 @@ export default function(group, element, translate, bpmnModeler) {
         let users = getExtensionElement(businessObject, propParentName) || moddle.create(propParentName);
 
         // Add new item into `users` block
-        users.get('users')[idx] = moddle.create('access:User', {identity: value['access:user']});
+        if (users.get('users')[index])
+          users.get('users').splice(index, 1);
 
         // Check `access:Users` block existing in extensions and replace old value for new
         let existIndex = existEEV.findIndex((el, i, arr) => el.$type === 'access:Users');
@@ -73,16 +85,12 @@ export default function(group, element, translate, bpmnModeler) {
         // Update properties for current element
         modeling.updateProperties(element, {extensionElements});
       },
-      removeElement: function(element, node, index) {
-        // return [{'access:user': 'qwe'}]
-      },
       getElements: function(element, node) {
         switch(businessObject.$type) {
           case 'bpmn:UserTask':
             // Get extensions node
             let users = getExtensionElement(businessObject, propParentName);
             return (users && Array.isArray(users.users)) ? users.users : [];
-            // return (users && Array.isArray(users.users)) ? users.users.map((q) => q.identity) : [];
             break;
           default:
             return [];
