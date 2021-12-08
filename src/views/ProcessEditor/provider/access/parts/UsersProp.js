@@ -48,7 +48,7 @@ export default function(group, element, translate, bpmnModeler, bpmnFactory) {
             // Get extensions node
             let users = getExtensionElement(businessObject, propParentName);
             if (users && Array.isArray(users.users)) {
-              node.querySelectorAll('input[name="access:user"]').forEach((e, i) => e.value = users.users[i].identity);
+              node.querySelectorAll('input[name="access:user"]').forEach((e, i) => e.value = users.users[i].identity || '');
               return users.users;
             }
             return [];
