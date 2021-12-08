@@ -26,6 +26,16 @@ export default function(group, element, translate, bpmnModeler) {
       labels: ['User'],
       description: 'Enter users which have access',
       addLabel: 'Add user',
+      setControlValue: function(element, entryNode, input, prop, value, idx) {
+        // Get extensions node
+        let users = getExtensionElement(businessObject, propParentName);
+        let userList = (users && Array.isArray(users.users)) ? users.users : [];
+        let inputValue = (userList[idx] && userList[idx].identity) ? userList[idx].identity : '';
+        input.setAttribute("value", inputValue);
+      },
+      validate: function(element, value, node, idx) {
+        return;
+      },
       addElement: function(element, node, event, scopeNode) {
         // Get extensions node
         let extensionElements = businessObject.extensionElements || moddle.create('bpmn:ExtensionElements');
@@ -70,7 +80,8 @@ export default function(group, element, translate, bpmnModeler) {
       },
       getElements: function(element, node) {
         switch(businessObject.$type) {
-          case 'bpmn:UserTask':// Get extensions node
+          case 'bpmn:UserTask':
+            // Get extensions node
             let users = getExtensionElement(businessObject, propParentName);
             return (users && Array.isArray(users.users)) ? users.users : [];
             // return (users && Array.isArray(users.users)) ? users.users.map((q) => q.identity) : [];
