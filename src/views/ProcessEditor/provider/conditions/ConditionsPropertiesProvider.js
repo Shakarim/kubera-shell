@@ -1,26 +1,19 @@
 import rulesProp from './parts/RulesProp';
 
-function createConditionsTabGroups(element, translate) {
-  let generalGroup = {
-    id: 'general',
-    label: 'General',
-    entries: []
-  };
-  rulesProp(generalGroup, element, translate);
-
-  return [generalGroup];
-}
-
 export default function ConditionsPropertiesProvider(propertiesPanel, translate) {
   this.getTabs = function(element) {
     return function(entries) {
-      let conditionsTab = {
-        id: 'conditions',
-        label: 'Conditions',
-        groups: createConditionsTabGroups(element, translate)
-      };
-
-      entries.push(conditionsTab);
+      entries.map(function(tab) {
+        if (tab.id === 'general') {
+          tab.groups.map(function(group) {
+            if (group.id === 'general') {
+              rulesProp(group, element, translate)
+            }
+            return group;
+          });
+        }
+        return tab;
+      });
 
       return entries;
     }
