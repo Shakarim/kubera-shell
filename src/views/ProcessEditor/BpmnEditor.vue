@@ -81,7 +81,7 @@
 <style>
   #js-canvas {
     width: 100%;
-    height: 700px;
+    height: calc(100vh - 14rem);
   }
   #process-editor .card-body {
     padding: 0;
