@@ -8,8 +8,8 @@ export default function(group, element, translate) {
     group.entries.push(entryFactory.textField(translate, {
       id : 'identity',
       description : 'Enter observer identity',
-      label : 'Observer identity',
-      modelProperty : 'kubera:observer'
+      label : 'Identity',
+      modelProperty : 'observer:identity'
     }));
   }
 }

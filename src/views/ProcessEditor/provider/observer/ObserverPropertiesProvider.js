@@ -2,8 +2,8 @@ import identityProp from './parts/IdentityProp';
 
 function createObserverTabGroups(element, translate) {
   let observerGroup = {
-    id: 'general',
-    label: 'General',
+    id: 'observer',
+    label: 'Observer',
     entries: []
   };
   identityProp(observerGroup, element, translate);
@@ -14,13 +14,12 @@ function createObserverTabGroups(element, translate) {
 export default function ObserverPropertiesProvider(propertiesPanel, translate) {
   this.getTabs = function(element) {
     return function(entries) {
-      let observerTab = {
-        id: 'observer',
-        label: 'Observer',
-        groups: createObserverTabGroups(element, translate)
-      };
-
-      entries.push(observerTab);
+      entries.map(function(tab) {
+        if (tab.id === 'general') {
+          createObserverTabGroups(element, translate).forEach((group) => tab.groups.splice(1, 0, group));
+        }
+        return tab;
+      });
 
       return entries;
     }

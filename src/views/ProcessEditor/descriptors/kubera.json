@@ -62,19 +62,6 @@
           "type": "String"
         }
       ]
-    },
-    {
-      "name": "observer",
-      "extends": [
-        "bpmn:ServiceTask"
-      ],
-      "properties": [
-        {
-          "name": "identity",
-          "isAttr": true,
-          "type": "String"
-        }
-      ]
     }
   ],
   "emumerations": [],

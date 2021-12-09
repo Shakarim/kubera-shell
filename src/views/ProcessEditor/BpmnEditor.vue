@@ -20,6 +20,7 @@
   import defaultDiagramXML from '../../../public/bpmn/testDiagram.bpmn';
 
   import kuberaModdleDescriptor from './descriptors/kubera';
+  import observerModdleDescriptor from './descriptors/observer';
 
   import observerPropertiesProviderModule from './provider/observer';
   import conditionsPropertiesProviderModule from './provider/conditions';
@@ -48,7 +49,8 @@
             accessPropertiesProviderModule
           ],
           moddleExtensions: {
-            kubera: kuberaModdleDescriptor
+            kubera: kuberaModdleDescriptor,
+            observer: observerModdleDescriptor
           }
         });
       },
