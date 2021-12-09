@@ -16,7 +16,10 @@ function createAccessTabGroups(element, translate, modeler, bpmnFactory) {
   };
   groupsProp(groupsGroup, element, translate, modeler, bpmnFactory);
 
-  return [usersGroup, groupsGroup];
+  return [
+    usersGroup,
+    groupsGroup
+  ];
 }
 
 export default function AccessPropertiesProvider(propertiesPanel, translate, modeler, bpmnFactory) {

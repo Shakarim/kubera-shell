@@ -9,7 +9,7 @@ export default function(group, element, translate) {
       id : 'rules',
       description : 'Enter rules of conditions',
       label : 'Rules',
-      modelProperty : 'conditions:rules'
+      modelProperty : 'kubera:rules'
     }));
   }
 }

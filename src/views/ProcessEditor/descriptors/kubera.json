@@ -1,7 +1,7 @@
 {
-  "name": "Access",
-  "prefix": "access",
-  "uri": "http://access",
+  "name": "Kubera",
+  "prefix": "kubera",
+  "uri": "http://kubera",
   "xml": {
     "tagAlias": "lowerCase"
   },
@@ -42,6 +42,32 @@
     },
     {
       "name": "Group",
+      "properties": [
+        {
+          "name": "identity",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "BewitchedStartEvent",
+      "extends": [
+        "bpmn:SequenceFlow"
+      ],
+      "properties": [
+        {
+          "name": "rules",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "observer",
+      "extends": [
+        "bpmn:ServiceTask"
+      ],
       "properties": [
         {
           "name": "identity",

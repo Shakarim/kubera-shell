@@ -1,7 +1,7 @@
 import entryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory';
 import {is, getBusinessObject} from 'bpmn-js/lib/util/ModelUtil';
 
-const propParentName = 'access:Groups';
+const propParentName = 'kubera:Groups';
 
 let elementHelper = require('bpmn-js-properties-panel/lib/helper/ElementHelper'),
   cmdHelper = require('bpmn-js-properties-panel/lib/helper/CmdHelper'),
@@ -28,7 +28,7 @@ export default function(group, element, translate, bpmnModeler, bpmnFactory) {
   if (is(element, 'bpmn:UserTask')) {
     group.entries.push(entryFactory.table(translate, {
       id: 'groups',
-      modelProperties: ['access:group'],
+      modelProperties: ['kubera:group'],
       labels: ['Group'],
       description: 'Enter groups which have access',
       addLabel: 'Add group',
@@ -45,17 +45,17 @@ export default function(group, element, translate, bpmnModeler, bpmnFactory) {
         }
         let groups = getExtensionElement(businessObject, propParentName);
         if (!groups) {
-          groups = elementHelper.createElement('access:Groups', {}, extensionElements, bpmnFactory);
+          groups = elementHelper.createElement('kubera:Groups', {}, extensionElements, bpmnFactory);
           extensionElements.get('values').push(groups);
         }
-        let newValue = elementHelper.createElement('access:Group', { identity: '' }, groups, bpmnFactory);
+        let newValue = elementHelper.createElement('kubera:Group', { identity: '' }, groups, bpmnFactory);
 
         commands.push(cmdHelper.addElementsTolist(element, groups, 'groups', [ newValue ]));
         return commands;
       },
       updateElement: function(element, value, node, index) {
         let item = getExtensionElement(businessObject, propParentName).groups[index];
-        return cmdHelper.updateBusinessObject(element, item, {identity: value['access:group']});
+        return cmdHelper.updateBusinessObject(element, item, {identity: value['kubera:group']});
       },
       removeElement: function(element, node, index) {
         let commands = []
@@ -75,7 +75,7 @@ export default function(group, element, translate, bpmnModeler, bpmnFactory) {
             // Get extensions node
             let groups = getExtensionElement(businessObject, propParentName);
             if (groups && Array.isArray(groups.groups)) {
-              node.querySelectorAll('input[name="access:group"]').forEach((e, i) => e.value = groups.groups[i].identity || '');
+              node.querySelectorAll('input[name="kubera:group"]').forEach((e, i) => e.value = groups.groups[i].identity || '');
               return groups.groups;
             }
             return [];

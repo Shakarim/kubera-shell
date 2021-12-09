@@ -19,14 +19,11 @@
 //  import defaultDiagramXML from '../../../public/bpmn/defaultDiagram.bpmn';
   import defaultDiagramXML from '../../../public/bpmn/testDiagram.bpmn';
 
+  import kuberaModdleDescriptor from './descriptors/kubera';
+
   import observerPropertiesProviderModule from './provider/observer';
-  import observerModdleDescriptor from './descriptors/observer';
-
   import conditionsPropertiesProviderModule from './provider/conditions';
-  import conditionsModdleDescriptor from './descriptors/conditions';
-
   import accessPropertiesProviderModule from './provider/access';
-  import accessModdleDescriptor from './descriptors/access';
 
   export default {
     data() {
@@ -45,14 +42,13 @@
           additionalModules: [
             propertiesPanelModule,
             propertiesProviderModule,
+
             observerPropertiesProviderModule,
             conditionsPropertiesProviderModule,
             accessPropertiesProviderModule
           ],
           moddleExtensions: {
-            observer: observerModdleDescriptor,
-            conditions: conditionsModdleDescriptor,
-            access: accessModdleDescriptor
+            kubera: kuberaModdleDescriptor
           }
         });
       },
