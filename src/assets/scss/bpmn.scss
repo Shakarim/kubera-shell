@@ -22,7 +22,7 @@
 .properties-panel-parent {
   display: block;
   width: 30%;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
   overflow: auto;
 }
 .properties-panel-parent:empty {
@@ -31,6 +31,27 @@
 .properties-panel-parent > .djs-properties-panel {
   padding-bottom: 70px;
   min-height: 100%;
+}
+
+.bpp-properties-tab-bar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+ul.bpp-properties-tabs-links > li > a {
+  border-color: rgba(0, 0, 0, 0.05);
+}
+ul.bpp-properties-tabs-links > li.bpp-active a {
+  padding-bottom: 5px;
+  border-top: 3px solid #5e72e4;
+  border-bottom: none;
+}
+
+.bpp-properties-group:hover > .group-toggle:hover {
+  background-color: #2dce89;
+}
+
+.bpp-properties-group:hover > .group-toggle {
+  background-color: #5e72e4;
 }
 
 .bpp-properties-panel {
