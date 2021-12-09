@@ -93,3 +93,49 @@ ul.bpp-properties-tabs-links > li > a {
   vertical-align: middle;
   margin-bottom: 0;
 }
+
+.bpp-table-add-row label {
+  margin: 0;
+}
+
+.bpp-table-add-row > .action-button {
+  position: relative;
+  text-transform: none;
+  -webkit-transition: all .15s ease;
+  transition: all .15s ease;
+  letter-spacing: .025em;
+  font-size: .875rem;
+  will-change: transform;
+
+  padding: 0;
+  line-height: 0.5;
+  border-radius: 0.375rem;
+
+  color: #fff;
+  background-color: #5e72e4;
+  border-color: #5e72e4;
+}
+.bpp-table-add-row > .action-button:hover {
+  color: #fff;
+}
+
+.bpp-table-row > .action-button.clear {
+  margin-top: 7px;
+  position: relative;
+  text-transform: none;
+  -webkit-transition: all .15s ease;
+  transition: all .15s ease;
+  letter-spacing: .025em;
+  font-size: .875rem;
+  will-change: transform;
+  border: none;
+
+  padding: 0;
+  line-height: 0.5;
+
+  color: #f5365c;
+  background-color: transparent;
+}
+.bpp-table-row > .action-button.clear:hover {
+  color: #881825;
+}
