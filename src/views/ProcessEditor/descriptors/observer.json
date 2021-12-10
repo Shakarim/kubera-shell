@@ -13,6 +13,11 @@
       ],
       "properties": [
         {
+          "name": "type",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
           "name": "identity",
           "isAttr": true,
           "type": "String"
