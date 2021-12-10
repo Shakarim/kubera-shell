@@ -56,7 +56,11 @@ export default function(group, element, translate) {
       hidden: function(element) {
         let bo = getBusinessObject(element);
         return bo.get('observer:type') !== 'specificModule';
-      }
+      },
+      validate: function(element) {
+        let bo = getBusinessObject(element);
+        return (bo.get('observer:identity')) ? {} : {'observer:identity': 'service task must have an identity'}
+      },
     }));
   }
 }
