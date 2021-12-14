@@ -21,6 +21,7 @@
 
   import kuberaModdleDescriptor from './descriptors/kubera';
   import observerModdleDescriptor from './descriptors/observer';
+  import accessModdleDescriptor from './descriptors/access';
 
   import observerPropertiesProviderModule from './provider/observer';
   import conditionsPropertiesProviderModule from './provider/conditions';
@@ -50,7 +51,8 @@
           ],
           moddleExtensions: {
             kubera: kuberaModdleDescriptor,
-            observer: observerModdleDescriptor
+            observer: observerModdleDescriptor,
+            access: accessModdleDescriptor
           }
         });
       },

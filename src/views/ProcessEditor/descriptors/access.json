@@ -1,0 +1,56 @@
+{
+  "name": "Access",
+  "prefix": "access",
+  "uri": "http://access",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "types": [
+    {
+      "name": "Users",
+      "extends": [ "bpmn:UserTask" ],
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "users",
+          "isMany": true,
+          "type": "User"
+        }
+      ]
+    },
+    {
+      "name": "Groups",
+      "extends": [ "bpmn:UserTask" ],
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "groups",
+          "isMany": true,
+          "type": "Group"
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "properties": [
+        {
+          "name": "identity",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Group",
+      "properties": [
+        {
+          "name": "identity",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    }
+  ],
+  "emumerations": [],
+  "associations": []
+}
